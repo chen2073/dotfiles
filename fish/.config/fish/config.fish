@@ -36,3 +36,7 @@ function fish_prompt
 end
 
 zoxide init fish | source
+
+set -gx EDITOR nvim
+set -gx VISUAL code
+
