@@ -9,7 +9,7 @@ return {
 	lazy = false,
 	config = function()
 		require("neo-tree").setup({
-			enable_git_status = true,
+			enable_git_status = false,
 			-- git_status = {
 			-- 	symbols = {
 			-- 		-- Change type
@@ -25,7 +25,7 @@ return {
 			-- 		conflict = "conflict",
 			-- 	},
 			-- },
-			-- enable_diagnostics = true,
+			enable_diagnostics = false,
 			window = {
 				position = "left",
 				-- mappings = {
@@ -50,6 +50,9 @@ return {
 				-- },
 			},
 			filesystem = {
+				bind_to_cwd = false,
+				follow_current_file = { enabled = true },
+				use_libuv_file_watcher = true,
 				filtered_items = {
 					visible = false, -- when true, they will just be displayed differently than normal items
 					hide_dotfiles = false,
