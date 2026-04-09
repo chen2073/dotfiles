@@ -7,7 +7,7 @@
   "goimports-reviser": "v3.12.6",
   "gopls": "v0.21.1",
   "kulala-fmt": "2.11.0",
-  "lua-language-server": "3.18.0",
+  "lua-language-server": "3.18.1",
   "nixfmt": "v1.2.0",
   "prettier": "3.8.1",
   "prettierd": "0.27.0",
