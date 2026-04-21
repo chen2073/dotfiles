@@ -59,7 +59,12 @@ return {
 			fzf.grep_project({ resume = true })
 		end, { desc = "resume grep project" })
 
-		vim.keymap.set({ "n" }, "<C-f>", ":FzfLua ", { desc = ":Fzf" })
+        -- grep visual
+        vim.keymap.set("v", "<leader>sg", function()
+			fzf.grep_visual()
+		end, { desc = "grep visual selection" })
+
+		vim.keymap.set({ "n", "v" }, "<C-f>", ":FzfLua ", { desc = ":Fzf" })
 
 		vim.keymap.set({ "n", "v" }, "<leader>sk", function()
 			fzf.keymaps({ winopts = { preview = { hidden = true } } })
