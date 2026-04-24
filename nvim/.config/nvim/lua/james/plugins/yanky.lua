@@ -10,6 +10,9 @@ return {
 					action = require("yanky.picker").actions.set_register('"'),
 				},
 			},
+			system_clipboard = {
+				sync_with_ring = false,
+			},
 		})
 		vim.keymap.set({ "n", "x" }, "<leader>p", "<cmd>YankyRingHistory<cr>", { desc = "Open Yank History" })
 	end,

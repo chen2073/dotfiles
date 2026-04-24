@@ -6,8 +6,8 @@ return {
 	config = function()
 		require("lualine").setup({
 			options = {
-				component_separators = { left = "│", right = "" },
-				section_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
 					statusline = {},
 					winbar = {
@@ -77,20 +77,20 @@ return {
 				lualine_y = {},
 				lualine_z = {},
 			},
-			-- tabline = {
-			-- 	lualine_a = {
-			-- 		{
-			-- 			"tabs",
-			-- 			mode = 2,
-			-- 			use_mode_colors = true,
-			-- 		},
-			-- 	},
-			-- 	lualine_b = {},
-			-- 	lualine_c = {},
-			-- 	lualine_x = {},
-			-- 	lualine_y = {},
-			-- 	lualine_z = {},
-			-- },
+			tabline = {
+				lualine_a = {
+					{
+						"tabs",
+						mode = 2,
+						use_mode_colors = true,
+					},
+				},
+				lualine_b = {},
+				lualine_c = {},
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = {},
+			},
 			winbar = {
 				lualine_a = {},
 				lualine_b = {},
