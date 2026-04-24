@@ -1,3 +1,7 @@
+if test (uname) = Darwin; and test -x /opt/homebrew/bin/brew
+    /opt/homebrew/bin/brew shellenv | source
+end
+
 set fish_greeting
 set -U fish_prompt_pwd_dir_length 0
 

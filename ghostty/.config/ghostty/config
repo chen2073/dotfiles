@@ -5,3 +5,24 @@ cursor-style = block
 cursor-style-blink = true
 quick-terminal-position = center
 theme = Gruvbox Dark
+shell-integration = fish
+command = /opt/homebrew/bin/fish
+mouse-hide-while-typing = true
+scrollback-limit = 1000000
+window-save-state = always
+shell-integration-features = ssh-env,ssh-terminfo
+
+keybind = ctrl+a>w=new_window
+keybind = ctrl+a>c=new_tab
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+keybind = ctrl+a>h=new_split:left
+keybind = ctrl+a>j=new_split:down
+keybind = ctrl+a>k=new_split:up
+keybind = ctrl+a>l=new_split:right
+keybind = ctrl+a>f=toggle_split_zoom
+keybind = ctrl+a>n=next_tab
+keybind = ctrl+a>p=previous_tab
+keybind = super+r=reload_config
