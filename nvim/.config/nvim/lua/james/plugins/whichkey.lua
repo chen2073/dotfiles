@@ -13,7 +13,6 @@ return {
 			{ "<leader>h", group = "Gitsigns", mode = "n" },
 			{ "<leader>f", group = "format", mode = { "n", "v" } },
 			{ "<leader>m", group = "Recall Mark", mode = "n" },
-			{ "<leader>k", group = "Kulala", mode = { "n", "v" } },
 			{ "<leader>t", group = "Grapple Tag", mode = "n" },
 			{ "<leader>r", group = "Grugfar Replace", mode = { "n", "v" } },
 			{ "<leader>rg", group = "Grugfar Replace in project", mode = { "n", "v" } },
