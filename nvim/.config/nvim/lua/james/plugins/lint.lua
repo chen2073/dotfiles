@@ -1,5 +1,6 @@
 return {
 	"mfussenegger/nvim-lint",
+    cond = not vim.g.vscode,
 	config = function()
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 			callback = function()
