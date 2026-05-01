@@ -19,7 +19,7 @@ return {
 			{ "<leader>rg", group = "Grugfar Replace in project", mode = { "n", "v" } },
 			{ "<leader>s", group = "Fzf", mode = { "n", "v" } },
 			{ "<leader>sr", group = "Fzf resume", mode = { "n", "v" } },
-			{ "<leader>c", group = "comment", mode = { "n", "v" } },
+			{ "<leader>c", group = "Codediff conflicts", mode = { "n" } },
 			{ "<leader>?", group = "help", mode = { "n", "v" } },
 		})
 	end,

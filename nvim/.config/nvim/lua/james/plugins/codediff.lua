@@ -14,12 +14,12 @@ return {
 				discard_hunk = "<leader>hr", -- Discard hunk under cursor (working tree only)
 			},
 			conflict = {
-				accept_incoming = "<leader>hct", -- Accept incoming (theirs/left) change
-				accept_current = "<leader>hco", -- Accept current (ours/right) change
-				accept_both = "<leader>hcb", -- Accept both changes (incoming first)
-				discard = "<leader>hcx", -- Discard both, keep base
-				next_conflict = "]x", -- Jump to next conflict
-				prev_conflict = "[x", -- Jump to previous conflict
+				accept_incoming = "<leader>ct", -- Accept incoming (theirs/left) change
+				accept_current = "<leader>co", -- Accept current (ours/right) change
+				accept_both = "<leader>cb", -- Accept both changes (incoming first)
+				discard = "<leader>cx", -- Discard both, keep base
+				next_conflict = "]c", -- Jump to next conflict
+				prev_conflict = "[c", -- Jump to previous conflict
 			},
 		},
 	},
