@@ -1,5 +1,6 @@
 return {
 	"ibhagwan/fzf-lua",
+    cond = not vim.g.vscode,
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		local fzf = require("fzf-lua")
@@ -27,7 +28,7 @@ return {
 		fzf.register_ui_select()
 
         -- buffers and tabs
-		vim.keymap.set({ "n" }, "<leader>sb", function()
+		vim.keymap.set({ "n" }, "<leader>b", function()
 			fzf.buffers()
 		end, { desc = "buffers" })
 		vim.keymap.set({ "n" }, "<leader>st", function()
@@ -49,6 +50,14 @@ return {
 		vim.keymap.set("n", "<leader>srg", function()
 			fzf.grep_curbuf({ resume = true })
 		end, { desc = "resume grep current buffer" })
+
+ 		-- grep cword and cWORD
+		vim.keymap.set("n", "<leader>sw", function()
+			fzf.grep_cword()
+		end, { desc = "search word under cursor" })
+		vim.keymap.set("n", "<leader>sW", function()
+			fzf.grep_cWORD({ resume = true })
+		end, { desc = "search WORD under cursor" })
 
 		-- grep project
 		vim.keymap.set("n", "<leader>sp", function()
@@ -97,6 +106,7 @@ return {
 		vim.keymap.set("n", "<leader>dd", function()
 			fzf.diagnostics_document()
 		end, { desc = "Show document diagnostics" })
+
 		vim.keymap.set("n", "<leader>dw", function()
 			fzf.diagnostics_workspace()
 		end, { desc = "Show workspace diagnostics" })

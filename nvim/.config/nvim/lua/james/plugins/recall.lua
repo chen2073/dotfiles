@@ -1,6 +1,7 @@
 return {
 	"fnune/recall.nvim",
 	version = "*",
+    cond = not vim.g.vscode,
 	config = function()
 		local recall = require("recall")
 

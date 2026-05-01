@@ -2,6 +2,7 @@ return {
 	{
 		"nvim-mini/mini.pairs",
 		version = "*",
+		cond = not vim.g.vscode,
 		config = function()
 			require("mini.pairs").setup()
 		end,
@@ -9,6 +10,7 @@ return {
 	{
 		"nvim-mini/mini.surround",
 		version = "*",
+		cond = not vim.g.vscode,
 		config = function()
 			require("mini.surround").setup({
 				mappings = {

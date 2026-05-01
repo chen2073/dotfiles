@@ -45,3 +45,6 @@ starship init fish | source
 set -gx EDITOR nvim
 set -gx VISUAL code
 
+
+# uv
+fish_add_path "/home/jchen/.local/bin"

@@ -7,26 +7,26 @@ end, { expr = true, noremap = true })
 
 vim.keymap.set("n", "cc", "ggdG", { desc = "clear buffer" })
 
-vim.keymap.set({ "n", "v" }, "<C-w>1", ":1wincmd c<cr>", { desc = "close window 1" })
-vim.keymap.set({ "n", "v" }, "<C-w>2", ":2wincmd c<cr>", { desc = "close window 2" })
-vim.keymap.set({ "n", "v" }, "<C-w>3", ":3wincmd c<cr>", { desc = "close window 3" })
-vim.keymap.set({ "n", "v" }, "<C-w>4", ":4wincmd c<cr>", { desc = "close window 4" })
-vim.keymap.set({ "n", "v" }, "<C-w>5", ":5wincmd c<cr>", { desc = "close window 5" })
+vim.keymap.set({ "n", "v" }, "<C-w>1c", ":1wincmd c<cr>", { desc = "close window 1" })
+vim.keymap.set({ "n", "v" }, "<C-w>2c", ":2wincmd c<cr>", { desc = "close window 2" })
+vim.keymap.set({ "n", "v" }, "<C-w>3c", ":3wincmd c<cr>", { desc = "close window 3" })
+vim.keymap.set({ "n", "v" }, "<C-w>4c", ":4wincmd c<cr>", { desc = "close window 4" })
+vim.keymap.set({ "n", "v" }, "<C-w>5c", ":5wincmd c<cr>", { desc = "close window 5" })
 
-vim.keymap.set("n", "wt", function()
-	local count = vim.v.count
-	if count == 0 then
-		vim.cmd("tablast") -- or whatever you want for bare 'wt'
-	else
-		vim.cmd(count .. "tabnext")
-	end
-end, { desc = "Go to tab" })
+vim.keymap.set({ "n", "v" }, "<C-w>1f", ":1wincmd w<cr>", { desc = "focus window 1" })
+vim.keymap.set({ "n", "v" }, "<C-w>2f", ":2wincmd w<cr>", { desc = "focus window 2" })
+vim.keymap.set({ "n", "v" }, "<C-w>3f", ":3wincmd w<cr>", { desc = "focus window 3" })
+vim.keymap.set({ "n", "v" }, "<C-w>4f", ":4wincmd w<cr>", { desc = "focus window 4" })
+vim.keymap.set({ "n", "v" }, "<C-w>5f", ":5wincmd w<cr>", { desc = "focus window 5" })
 
-vim.keymap.set("n", "ww", function()
-	local count = vim.v.count
-	if count == 0 then
-		vim.cmd("wincmd w") -- default: go to next window
-	else
-		vim.cmd(count .. "wincmd w")
-	end
-end, { desc = "Go to window" })
+vim.keymap.set({ "n", "v" }, "<C-t>1f", ":tabn 1<cr>", { desc = "goto tab 1" })
+vim.keymap.set({ "n", "v" }, "<C-t>2f", ":tabn 2<cr>", { desc = "goto tab 2" })
+vim.keymap.set({ "n", "v" }, "<C-t>3f", ":tabn 3<cr>", { desc = "goto tab 3" })
+vim.keymap.set({ "n", "v" }, "<C-t>4f", ":tabn 4<cr>", { desc = "goto tab 4" })
+vim.keymap.set({ "n", "v" }, "<C-t>5f", ":tabn 5<cr>", { desc = "goto tab 5" })
+
+vim.keymap.set({ "n", "v" }, "<C-t>1c", ":tabclose 1<cr>", { desc = "focus tab 1" })
+vim.keymap.set({ "n", "v" }, "<C-t>2c", ":tabclose 2<cr>", { desc = "focus tab 2" })
+vim.keymap.set({ "n", "v" }, "<C-t>3c", ":tabclose 3<cr>", { desc = "focus tab 3" })
+vim.keymap.set({ "n", "v" }, "<C-t>4c", ":tabclose 4<cr>", { desc = "focus tab 4" })
+vim.keymap.set({ "n", "v" }, "<C-t>5c", ":tabclose 5<cr>", { desc = "focus tab 5" })
