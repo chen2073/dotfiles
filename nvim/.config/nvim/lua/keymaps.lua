@@ -30,3 +30,11 @@ vim.keymap.set({ "n", "v" }, "<C-t>2c", ":tabclose 2<cr>", { desc = "focus tab 2
 vim.keymap.set({ "n", "v" }, "<C-t>3c", ":tabclose 3<cr>", { desc = "focus tab 3" })
 vim.keymap.set({ "n", "v" }, "<C-t>4c", ":tabclose 4<cr>", { desc = "focus tab 4" })
 vim.keymap.set({ "n", "v" }, "<C-t>5c", ":tabclose 5<cr>", { desc = "focus tab 5" })
+
+vim.keymap.set({ "n", "v" }, "<leader>o", function()
+	vim.fn.system({ "tmux", "split-window", "-h", "-c", vim.fn.getcwd(), "opencode" })
+end, { desc = "opencode" })
+
+vim.keymap.set({ "n", "v" }, "<leader>c", function()
+	vim.fn.system({ "tmux", "split-window", "-h", "-c", vim.fn.getcwd(), "claude" })
+end, { desc = "claude code" })

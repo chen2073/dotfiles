@@ -33,8 +33,3 @@ vim.cmd([[
   amenu PopUp.Go\ to\ Definition <cmd>lua vim.lsp.buf.definition()<CR>
 ]])
 
--- undotree
-vim.cmd("packadd nvim.undotree")
-vim.keymap.set("n", "<leader>u", require("undotree").open, { desc = "undotree" })
-
-require("vim._core.ui2").enable({})

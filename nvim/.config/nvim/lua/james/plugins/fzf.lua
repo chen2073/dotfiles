@@ -1,6 +1,6 @@
 return {
 	"ibhagwan/fzf-lua",
-    cond = not vim.g.vscode,
+	cond = not vim.g.vscode,
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		local fzf = require("fzf-lua")
@@ -27,8 +27,8 @@ return {
 
 		fzf.register_ui_select()
 
-        -- buffers and tabs
-		vim.keymap.set({ "n" }, "<leader>b", function()
+		-- buffers and tabs
+		vim.keymap.set({ "n" }, "<leader>sb", function()
 			fzf.buffers()
 		end, { desc = "buffers" })
 		vim.keymap.set({ "n" }, "<leader>st", function()
@@ -51,7 +51,7 @@ return {
 			fzf.grep_curbuf({ resume = true })
 		end, { desc = "resume grep current buffer" })
 
- 		-- grep cword and cWORD
+		-- grep cword and cWORD
 		vim.keymap.set("n", "<leader>sw", function()
 			fzf.grep_cword()
 		end, { desc = "search word under cursor" })
@@ -68,8 +68,8 @@ return {
 			fzf.grep_project({ resume = true })
 		end, { desc = "resume grep project" })
 
-        -- grep visual
-        vim.keymap.set("v", "<leader>sg", function()
+		-- grep visual
+		vim.keymap.set("v", "<leader>sg", function()
 			fzf.grep_visual()
 		end, { desc = "grep visual selection" })
 

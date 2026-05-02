@@ -3,5 +3,9 @@
   "autoupdate": true,
   "server": {
     "port": 4096
+  },
+  "permission": {
+    "edit": "ask",
+    "bash": "ask"
   }
 }
