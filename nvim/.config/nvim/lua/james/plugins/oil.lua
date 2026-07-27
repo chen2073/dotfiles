@@ -1,6 +1,6 @@
 return {
 	"stevearc/oil.nvim",
-    cond = not vim.g.vscode,
+	cond = not vim.g.vscode,
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	lazy = false,
 	config = function()
@@ -15,6 +15,7 @@ return {
 			},
 			keymaps = {
 				["<C-s>"] = false,
+                ["<CR>"] = "actions.select",
 				["gs"] = {
 					callback = function()
 						-- get the current directory
@@ -37,6 +38,7 @@ return {
 					desc = "oil: Search in directory",
 				},
 			},
+			use_default_keymaps = false,
 		})
 
 		vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })

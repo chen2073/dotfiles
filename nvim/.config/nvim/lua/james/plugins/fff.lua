@@ -24,11 +24,18 @@ return {
 			desc = "grep files",
 		},
 		{
-			"<leader>zp",
+			"<leader>zg",
 			function()
 				require("fff").live_grep()
 			end,
-			desc = "grep project",
+			desc = "live grep",
+		},
+		{
+			"<leader>zr",
+			function()
+				require("fff").resume()
+			end,
+			desc = "resume search",
 		},
 		{
 			"<leader>zw",

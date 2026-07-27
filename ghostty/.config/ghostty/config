@@ -12,6 +12,7 @@ scrollback-limit = 1000000
 confirm-close-surface = false
 background-opacity = 0.88
 
+keybind = super+c=new_tab
 keybind = super+x=close_surface
 keybind = ctrl+h=goto_split:left
 keybind = ctrl+j=goto_split:bottom
