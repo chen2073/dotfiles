@@ -24,7 +24,7 @@ return {
 			desc = "grep files",
 		},
 		{
-			"<leader>zg",
+			"<leader>zp",
 			function()
 				require("fff").live_grep()
 			end,
