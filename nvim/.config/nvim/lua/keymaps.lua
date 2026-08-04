@@ -1,10 +1,6 @@
 vim.keymap.set("i", "<C-s>", "<cmd>w<cr><Esc>", { desc = "insert mode, save file" })
 vim.keymap.set("n", "<C-s>", "<cmd>w<cr>", { desc = "normal mode, save file" })
 
-vim.keymap.set("i", "<Tab>", function()
-	return string.rep(" ", vim.opt.softtabstop:get())
-end, { expr = true, noremap = true })
-
 vim.keymap.set("n", "cc", "ggdG", { desc = "clear buffer" })
 
 vim.keymap.set("n", "<F1>", function()
@@ -39,12 +35,6 @@ vim.keymap.set({ "n", "v" }, "<C-t>5c", ":tabclose 5<cr>", { desc = "focus tab 5
 vim.keymap.set({ "n", "v" }, "<leader>o", function()
 	vim.fn.system({ "tmux", "split-window", "-h", "-c", vim.fn.getcwd(), "opencode" })
 end, { desc = "opencode" })
-
--- vim.keymap.set("n", "<Tab>", ">>", { desc = "Indent line" })
--- vim.keymap.set("n", "<S-Tab>", "<<", { desc = "Dedent line" })
---
--- vim.keymap.set("v", "<Tab>", ">gv", { desc = "Indent selection" })
--- vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Dedent selection" })
 
 vim.keymap.set({ "n", "v" }, "<leader>c", function()
 	vim.fn.system({ "tmux", "split-window", "-h", "-c", vim.fn.getcwd(), "claude" })
