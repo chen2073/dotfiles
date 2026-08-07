@@ -44,6 +44,10 @@ abbr -a v nvim
 zoxide init fish | source
 starship init fish | source
 
+if type -q opam
+    eval (opam env --shell=fish)
+end
+
 set -gx EDITOR nvim
 set -gx VISUAL code
 
