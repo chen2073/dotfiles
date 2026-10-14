@@ -6,12 +6,12 @@
   "gofumpt": "v0.12.0",
   "goimports-reviser": "v3.13.2",
   "gopls": "v0.23.0",
-  "lua-language-server": "3.19.1",
+  "lua-language-server": "3.19.2",
   "nixfmt": "v1.5.0",
-  "prettier": "3.9.9",
+  "prettier": "3.9.10",
   "prettierd": "0.29.0",
   "pyright": "1.1.414",
-  "rust-analyzer": "2026-09-28",
-  "stylua": "v2.5.2",
-  "typescript-language-server": "6.0.1"
+  "rust-analyzer": "2026-10-12",
+  "stylua": "v2.6.0",
+  "typescript-language-server": "6.0.2"
 }
