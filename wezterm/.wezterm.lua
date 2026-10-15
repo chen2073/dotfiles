@@ -22,7 +22,6 @@ config.wsl_domains = {
 		name = "WSL:Ubuntu",
 		distribution = "Ubuntu",
 		default_cwd = "~",
-		default_prog = { "/home/linuxbrew/.linuxbrew/bin/tmux" },
 	},
 }
 
