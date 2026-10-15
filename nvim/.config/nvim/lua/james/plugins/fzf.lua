@@ -60,7 +60,7 @@ return {
 
 		-- grep project
 		vim.keymap.set("n", "<leader>sp", function()
-			fzf.grep_project()
+			fzf.grep_project({ no_ignore = true })
 		end, { desc = "grep project" })
 
 		vim.keymap.set("n", "<leader>srp", function()
