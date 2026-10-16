@@ -8,14 +8,14 @@ config.initial_cols = 120
 config.initial_rows = 28
 
 -- config.window_decorations = "RESIZE"
-config.hide_tab_bar_if_only_one_tab = true
+-- config.hide_tab_bar_if_only_one_tab = true
 
 config.color_scheme = "GruvboxDark"
 
 config.window_background_opacity = 0.9
 config.default_cursor_style = "BlinkingBlock"
 config.cursor_blink_rate = 800
-config.window_close_confirmation = "AlwaysPrompt"
+-- config.window_close_confirmation = "AlwaysPrompt"
 
 config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
@@ -31,10 +31,8 @@ config.wsl_domains = {
 	},
 }
 
-config.underline_thickness = '200%'   -- or a pixel value like 3 or '3px'
-config.underline_position = '-2px'    -- optional: nudge it down a bit
-
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+config.underline_thickness = "200%" -- or a pixel value like 3 or '3px'
+config.underline_position = "-2px" -- optional: nudge it down a bit
 
 local claude_code = wezterm.action_callback(function(window, pane)
 	local cwd = pane:get_current_working_dir()
@@ -45,6 +43,8 @@ local claude_code = wezterm.action_callback(function(window, pane)
 		args = { "/home/linuxbrew/.linuxbrew/bin/fish", "-lc", "exec claude" },
 	})
 end)
+
+config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 
 config.keys = {
 	{
@@ -60,7 +60,7 @@ config.keys = {
 	{
 		key = "c",
 		mods = "CTRL|SHIFT",
-		action = claude_code,
+		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
 	},
 	{
 		key = "LeftArrow",
@@ -73,7 +73,7 @@ config.keys = {
 	{
 		key = "c",
 		mods = "LEADER",
-		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+		action = claude_code,
 	},
 	{
 		key = "x",
