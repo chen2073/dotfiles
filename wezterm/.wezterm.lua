@@ -58,6 +58,11 @@ config.keys = {
 		action = wezterm.action.PasteFrom("Clipboard"),
 	},
 	{
+		key = "c",
+		mods = "CTRL|SHIFT",
+		action = claude_code,
+	},
+	{
 		key = "LeftArrow",
 		mods = "LEADER",
 		action = wezterm.action.Multiple({
@@ -68,7 +73,7 @@ config.keys = {
 	{
 		key = "c",
 		mods = "LEADER",
-		action = claude_code,
+		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
 	},
 	{
 		key = "x",
