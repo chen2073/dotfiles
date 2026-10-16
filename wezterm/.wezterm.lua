@@ -1,6 +1,38 @@
 local wezterm = require("wezterm")
-
+local smart_splits = wezterm.plugin.require("https://github.com/smart-splits-nvim/backend-wezterm")
 local config = wezterm.config_builder()
+
+smart_splits.apply_to_config(config, {
+	-- the default config is shown here; omit the table entirely to use it as-is
+
+	-- directional keys, in order of: left, down, up, right
+	direction_keys = { "h", "j", "k", "l" },
+	-- move/resize can also be configured separately, e.g.:
+	--   direction_keys = {
+	--     move = { 'h', 'j', 'k', 'l' },
+	--     resize = { 'LeftArrow', 'DownArrow', 'UpArrow', 'RightArrow' },
+	--   },
+
+	modifiers = {
+		move = "CTRL", -- e.g. CTRL+h to move left
+		resize = "META", -- e.g. META+h to resize left
+	},
+
+	-- what happens when there's no WezTerm pane in that direction: both a *direct* keypress in a
+	-- pane not running Neovim, and a request from Neovim reporting it hit its own edge, resolve
+	-- through this same option — smart-splits.nvim's own `move.at_edge` config has no effect here:
+	--   'stop'  -- pass the keystroke through to the program in the pane (default)
+	--   'wrap'  -- activate the farthest pane in the opposite direction
+	--   'split' -- split the current pane in that direction
+	--   function(ctx) ... end -- decide yourself; see below
+	at_edge = "stop",
+
+	-- block navigation (both a direct keypress and a request from Neovim) while the current pane
+	-- is zoomed in
+	block_nav_on_zoom = false,
+
+	log_level = "info", -- 'error' | 'warn' | 'info'
+})
 
 config.initial_cols = 120
 config.initial_rows = 28
@@ -23,19 +55,7 @@ config.wsl_domains = {
 		name = "WSL:Ubuntu",
 		distribution = "Ubuntu",
 		default_cwd = "~",
-	},
-}
-
-config.ssh_domains = {
-	{
-		name = "lin-jchen-01",
-		remote_address = "10.50.4.134",
-		username = "jchen",
 		default_prog = { "/home/linuxbrew/.linuxbrew/bin/fish", "-l" },
-		assume_shell = "Posix",
-		ssh_option = {
-			identityfile = "/home/jchen/.ssh/id_ed25519.pub",
-		},
 	},
 }
 
@@ -58,13 +78,36 @@ config.keys = {
 		action = wezterm.action.PasteFrom("Clipboard"),
 	},
 	{
-		-- clear the current command line: jump to end, then kill to start
 		key = "u",
 		mods = "LEADER",
 		action = wezterm.action.Multiple({
 			wezterm.action.SendKey({ key = "e", mods = "CTRL" }),
 			wezterm.action.SendKey({ key = "u", mods = "CTRL" }),
 		}),
+	},
+	{
+		key = "X",
+		mods = "LEADER",
+		action = wezterm.action.CloseCurrentPane({ confirm = false }),
+	},
+	{
+		key = '"',
+		mods = "LEADER",
+		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "%",
+		mods = "LEADER",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "4",
+		mods = "LEADER",
+		action = wezterm.action_callback(function(_, pane)
+			local right = pane:split({ direction = "Right" })
+			pane:split({ direction = "Bottom" })
+			right:split({ direction = "Bottom" })
+		end),
 	},
 }
 
