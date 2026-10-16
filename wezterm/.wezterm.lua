@@ -31,6 +31,9 @@ config.wsl_domains = {
 	},
 }
 
+config.underline_thickness = '200%'   -- or a pixel value like 3 or '3px'
+config.underline_position = '-2px'    -- optional: nudge it down a bit
+
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 
 local claude_code = wezterm.action_callback(function(window, pane)

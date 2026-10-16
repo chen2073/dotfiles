@@ -30,3 +30,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		end
 	end,
 })
+
+-- init.lua (after your colorscheme loads)
+local function set_undercurls()
+  local hl = vim.api.nvim_set_hl
+  hl(0, 'DiagnosticUnderlineError', { undercurl = true, sp = '#ff3b3b' })
+  hl(0, 'DiagnosticUnderlineWarn',  { undercurl = true, sp = '#ffb000' })
+  hl(0, 'DiagnosticUnderlineInfo',  { undercurl = true, sp = '#3ba7ff' })
+  hl(0, 'DiagnosticUnderlineHint',  { undercurl = true, sp = '#3bffb0' })
+  hl(0, 'SpellBad',                 { undercurl = true, sp = '#ff3b3b' })
+end
+
+set_undercurls()
+vim.api.nvim_create_autocmd('ColorScheme', { callback = set_undercurls })

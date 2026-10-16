@@ -73,25 +73,5 @@ return {
 			end,
 			desc = "Move to right window",
 		},
-		{
-			"<A-w>l",
-			"<cmd>vertical resize -2<CR>",
-			desc = "Decrease window width",
-		},
-		{
-			"<A-w>j",
-			"<cmd>resize -2<CR>",
-			desc = "Decrease window height",
-		},
-		{
-			"<A-w>k",
-			"<cmd>resize +2<CR>",
-			desc = "Increase window height",
-		},
-		{
-			"<A-w>h",
-			"<cmd>vertical resize +2<CR>",
-			desc = "Increase window width",
-		},
 	},
 }
