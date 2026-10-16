@@ -51,6 +51,11 @@ config.keys = {
 		mods = "LEADER",
 		action = wezterm.action.ReloadConfiguration,
 	},
+	{
+		key = "v",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.PasteFrom("Clipboard"),
+	},
 }
 
 config.mouse_bindings = {

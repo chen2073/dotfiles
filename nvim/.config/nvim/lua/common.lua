@@ -12,11 +12,11 @@ vim.opt.scrolloff = 7
 
 -- cursor shape + blinking (Neovim must request blink itself; Ghostty's
 -- cursor-style-blink is ignored once an app drives the cursor via guicursor)
--- vim.o.guicursor = table.concat({
--- 	"n-v-c:block-blinkwait1000-blinkon500-blinkoff500",
--- 	"i-ci:ver25-blinkwait1000-blinkon500-blinkoff500",
--- 	"r:hor50-blinkwait100-blinkon500-blinkoff500",
--- }, ",")
+vim.o.guicursor = table.concat({
+	"n-v-c:block-blinkwait1000-blinkon500-blinkoff500",
+	"i-ci:ver25-blinkwait1000-blinkon500-blinkoff500",
+	"r:hor50-blinkwait100-blinkon500-blinkoff500",
+}, ",")
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
