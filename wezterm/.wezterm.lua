@@ -8,7 +8,8 @@ config.initial_rows = 28
 config.color_scheme = "GruvboxDark"
 
 config.window_background_opacity = 0.9
-config.cursor_blink_rate = 500
+config.default_cursor_style = "BlinkingBlock"
+config.cursor_blink_rate = 800
 config.window_close_confirmation = "AlwaysPrompt"
 config.automatically_reload_config = true
 
@@ -56,6 +57,15 @@ config.keys = {
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.PasteFrom("Clipboard"),
 	},
+	{
+		-- clear the current command line: jump to end, then kill to start
+		key = "u",
+		mods = "LEADER",
+		action = wezterm.action.Multiple({
+			wezterm.action.SendKey({ key = "e", mods = "CTRL" }),
+			wezterm.action.SendKey({ key = "u", mods = "CTRL" }),
+		}),
+	},
 }
 
 config.mouse_bindings = {
@@ -65,5 +75,9 @@ config.mouse_bindings = {
 		mods = "NONE",
 	},
 }
+
+wezterm.on("window-config-reloaded", function(window, _)
+	window:toast_notification("wezterm", "configuration reloaded!", nil, 4000)
+end)
 
 return config
