@@ -2,6 +2,97 @@ local wezterm = require("wezterm")
 local smart_splits = wezterm.plugin.require("https://github.com/smart-splits-nvim/backend-wezterm")
 local config = wezterm.config_builder()
 
+config.automatically_reload_config = true
+
+config.initial_cols = 120
+config.initial_rows = 28
+
+-- config.window_decorations = "RESIZE"
+config.hide_tab_bar_if_only_one_tab = true
+
+config.color_scheme = "GruvboxDark"
+
+config.window_background_opacity = 0.9
+config.default_cursor_style = "BlinkingBlock"
+config.cursor_blink_rate = 800
+config.window_close_confirmation = "AlwaysPrompt"
+
+config.font = wezterm.font("JetBrainsMono Nerd Font")
+config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
+config.font_size = 14
+config.default_domain = "WSL:Ubuntu"
+
+config.wsl_domains = {
+	{
+		name = "WSL:Ubuntu",
+		distribution = "Ubuntu",
+		default_cwd = "~",
+		default_prog = { "/home/linuxbrew/.linuxbrew/bin/fish", "-l" },
+	},
+}
+
+config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+
+local claude_code = wezterm.action_callback(function(window, pane)
+	local cwd = pane:get_current_working_dir()
+	pane:split({
+		direction = "Right",
+		size = 0.5,
+		cwd = cwd and cwd.file_path or nil,
+		args = { "/home/linuxbrew/.linuxbrew/bin/fish", "-lc", "exec claude" },
+	})
+end)
+
+config.keys = {
+	{
+		key = "s",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.Search("CurrentSelectionOrEmptyString"),
+	},
+	{
+		key = "v",
+		mods = "CTRL",
+		action = wezterm.action.PasteFrom("Clipboard"),
+	},
+	{
+		key = "LeftArrow",
+		mods = "LEADER",
+		action = wezterm.action.Multiple({
+			wezterm.action.SendKey({ key = "e", mods = "CTRL" }),
+			wezterm.action.SendKey({ key = "u", mods = "CTRL" }),
+		}),
+	},
+	{
+		key = "c",
+		mods = "LEADER",
+		action = claude_code,
+	},
+	{
+		key = "x",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.CloseCurrentPane({ confirm = false }),
+	},
+	{
+		key = '"',
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "%",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "4",
+		mods = "LEADER",
+		action = wezterm.action_callback(function(_, pane)
+			local right = pane:split({ direction = "Right" })
+			pane:split({ direction = "Bottom" })
+			right:split({ direction = "Bottom" })
+		end),
+	},
+}
+
 smart_splits.apply_to_config(config, {
 	-- the default config is shown here; omit the table entirely to use it as-is
 
@@ -34,83 +125,6 @@ smart_splits.apply_to_config(config, {
 	log_level = "info", -- 'error' | 'warn' | 'info'
 })
 
-config.initial_cols = 120
-config.initial_rows = 28
-
-config.color_scheme = "GruvboxDark"
-
-config.window_background_opacity = 0.9
-config.default_cursor_style = "BlinkingBlock"
-config.cursor_blink_rate = 800
-config.window_close_confirmation = "AlwaysPrompt"
-config.automatically_reload_config = true
-
-config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
-config.font_size = 14
-config.default_domain = "WSL:Ubuntu"
-
-config.wsl_domains = {
-	{
-		name = "WSL:Ubuntu",
-		distribution = "Ubuntu",
-		default_cwd = "~",
-		default_prog = { "/home/linuxbrew/.linuxbrew/bin/fish", "-l" },
-	},
-}
-
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
-
-config.keys = {
-	{
-		key = "s",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action.Search("CurrentSelectionOrEmptyString"),
-	},
-	{
-		key = "r",
-		mods = "LEADER",
-		action = wezterm.action.ReloadConfiguration,
-	},
-	{
-		key = "v",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action.PasteFrom("Clipboard"),
-	},
-	{
-		key = "u",
-		mods = "LEADER",
-		action = wezterm.action.Multiple({
-			wezterm.action.SendKey({ key = "e", mods = "CTRL" }),
-			wezterm.action.SendKey({ key = "u", mods = "CTRL" }),
-		}),
-	},
-	{
-		key = "X",
-		mods = "LEADER",
-		action = wezterm.action.CloseCurrentPane({ confirm = false }),
-	},
-	{
-		key = '"',
-		mods = "LEADER",
-		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
-	},
-	{
-		key = "%",
-		mods = "LEADER",
-		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-	},
-	{
-		key = "4",
-		mods = "LEADER",
-		action = wezterm.action_callback(function(_, pane)
-			local right = pane:split({ direction = "Right" })
-			pane:split({ direction = "Bottom" })
-			right:split({ direction = "Bottom" })
-		end),
-	},
-}
-
 config.mouse_bindings = {
 	{
 		event = { Down = { streak = 3, button = "Left" } },
@@ -118,9 +132,5 @@ config.mouse_bindings = {
 		mods = "NONE",
 	},
 }
-
-wezterm.on("window-config-reloaded", function(window, _)
-	window:toast_notification("wezterm", "configuration reloaded!", nil, 4000)
-end)
 
 return config
