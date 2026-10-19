@@ -7,7 +7,7 @@ local sys = wezterm.plugin.require("https://github.com/usrivastava92/widgets.wez
 local M = {}
 
 -- spacer drawn in the bar color, used as outer margin at both ends of the tab bar
-local bar_bg = { Background = { Color = gb.bg0 } }
+local bar_bg = { Background = { Color = gb.bar } }
 local bar_gap = { Text = " " }
 
 -- thin divider between the system widgets; components already pad themselves by 1 on each side
@@ -64,24 +64,24 @@ function M.apply_to_config(config)
 				normal_mode = {
 					a = { fg = gb.bg0, bg = gb.fg4 },
 					b = { fg = gb.fg2, bg = gb.bg1 },
-					c = { fg = gb.fg4, bg = gb.bg0 },
-					x = { fg = gb.fg4, bg = gb.bg0 },
+					c = { fg = gb.fg4, bg = gb.bar },
+					x = { fg = gb.fg4, bg = gb.bar },
 					y = { fg = gb.fg2, bg = gb.bg1 },
 					z = { fg = gb.bg0, bg = gb.fg4 },
 				},
 				copy_mode = {
 					a = { fg = gb.bg0, bg = gb.yellow },
 					b = { fg = gb.yellow, bg = gb.bg1 },
-					c = { fg = gb.fg4, bg = gb.bg0 },
+					c = { fg = gb.fg4, bg = gb.bar },
 				},
 				search_mode = {
 					a = { fg = gb.bg0, bg = gb.aqua },
 					b = { fg = gb.aqua, bg = gb.bg1 },
-					c = { fg = gb.fg4, bg = gb.bg0 },
+					c = { fg = gb.fg4, bg = gb.bar },
 				},
 				tab = {
 					active = { fg = gb.yellow, bg = gb.bg1 },
-					inactive = { fg = gb.bg4, bg = gb.bg0 },
+					inactive = { fg = gb.bg4, bg = gb.bar },
 					inactive_hover = { fg = gb.fg2, bg = gb.bg1 },
 				},
 			},
@@ -93,7 +93,7 @@ function M.apply_to_config(config)
 			component_separators = { left = "", right = "" },
 			tab_separators = {
 				-- trailing space is drawn on the bar background, leaving a gap between tabs
-				left = wezterm.nerdfonts.ple_right_half_circle_thick .. " ",
+				left = wezterm.nerdfonts.ple_right_half_circle_thick,
 				right = wezterm.nerdfonts.ple_left_half_circle_thick,
 			},
 		},
@@ -102,7 +102,7 @@ function M.apply_to_config(config)
 			-- "ResetAttributes" restores the section colors afterwards
 			tabline_a = { bar_bg, bar_gap, "ResetAttributes", { "mode" } },
 			tabline_b = { "workspace" },
-			tabline_c = { "  " },
+			tabline_c = { " " },
 			tab_active = {
 				"index",
 				{ "process", padding = { left = 0, right = 1 } },

@@ -16,13 +16,18 @@ M.palette = {
 	red = "#fb4934",
 }
 
+-- the tab bar is painted with the terminal background at the same opacity as the window,
+-- so it is see-through like the terminal instead of a solid strip
+M.opacity = 0.9
+M.palette.bar = string.format("rgba(40, 40, 40, %s)", M.opacity)
+
 function M.apply_to_config(config)
 	config.initial_cols = 120
 	config.initial_rows = 28
 
 	config.color_scheme = "GruvboxDark"
 
-	config.window_background_opacity = 0.9
+	config.window_background_opacity = M.opacity
 	config.default_cursor_style = "BlinkingBlock"
 	config.cursor_blink_rate = 800
 
@@ -40,13 +45,13 @@ function M.apply_to_config(config)
 	config.tab_max_width = 32
 	config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 	config.colors = config.colors or {}
-	config.colors.tab_bar = { background = M.palette.bg0 }
+	config.colors.tab_bar = { background = M.palette.bar }
 
 	-- the retro tab bar has no padding option; a top window border in the bar color sits above it
 	-- and acts as a top margin
 	config.window_frame = {
 		border_top_height = "0.4cell",
-		border_top_color = M.palette.bg0,
+		border_top_color = M.palette.bar,
 	}
 
 	-- the retro tab bar draws integrated buttons as plain text (" . ", " - ", " X ") by default;
@@ -60,11 +65,11 @@ function M.apply_to_config(config)
 	end
 	local p = M.palette
 	config.tab_bar_style = {
-		window_hide = button(wezterm.nerdfonts.cod_chrome_minimize, p.fg4, p.bg0),
+		window_hide = button(wezterm.nerdfonts.cod_chrome_minimize, p.fg4, p.bar),
 		window_hide_hover = button(wezterm.nerdfonts.cod_chrome_minimize, p.fg, p.bg1),
-		window_maximize = button(wezterm.nerdfonts.cod_chrome_maximize, p.fg4, p.bg0),
+		window_maximize = button(wezterm.nerdfonts.cod_chrome_maximize, p.fg4, p.bar),
 		window_maximize_hover = button(wezterm.nerdfonts.cod_chrome_maximize, p.fg, p.bg1),
-		window_close = button(wezterm.nerdfonts.cod_chrome_close, p.fg4, p.bg0),
+		window_close = button(wezterm.nerdfonts.cod_chrome_close, p.fg4, p.bar),
 		window_close_hover = button(wezterm.nerdfonts.cod_chrome_close, p.fg, p.red),
 	}
 end
