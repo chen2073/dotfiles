@@ -1,5 +1,7 @@
 local wezterm = require("wezterm")
 local smart_splits = wezterm.plugin.require("https://github.com/smart-splits-nvim/backend-wezterm")
+local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+local sys = wezterm.plugin.require("https://github.com/usrivastava92/widgets.wez")
 local config = wezterm.config_builder()
 
 config.automatically_reload_config = true
@@ -7,20 +9,20 @@ config.automatically_reload_config = true
 config.initial_cols = 120
 config.initial_rows = 28
 
--- config.window_decorations = "RESIZE"
--- config.hide_tab_bar_if_only_one_tab = true
+config.hide_tab_bar_if_only_one_tab = false
 
 config.color_scheme = "GruvboxDark"
 
 config.window_background_opacity = 0.9
 config.default_cursor_style = "BlinkingBlock"
 config.cursor_blink_rate = 800
--- config.window_close_confirmation = "AlwaysPrompt"
+config.window_close_confirmation = "AlwaysPrompt"
 
 config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.font_size = 14
-config.default_domain = "WSL:Ubuntu"
+-- config.default_domain = "WSL:Ubuntu"
+config.default_prog = { "/opt/homebrew/bin/fish", "-l" }
 
 config.wsl_domains = {
 	{
@@ -131,6 +133,50 @@ smart_splits.apply_to_config(config, {
 	block_nav_on_zoom = false,
 
 	log_level = "info", -- 'error' | 'warn' | 'info'
+})
+
+tabline.setup({
+	options = {
+		icons_enabled = true,
+		theme = "GruvboxDark",
+		tabs_enabled = true,
+		theme_overrides = {},
+		section_separators = {
+			left = wezterm.nerdfonts.pl_left_hard_divider,
+			right = wezterm.nerdfonts.pl_right_hard_divider,
+		},
+		component_separators = {
+			left = wezterm.nerdfonts.pl_left_soft_divider,
+			right = wezterm.nerdfonts.pl_right_soft_divider,
+		},
+		tab_separators = {
+			left = wezterm.nerdfonts.pl_left_hard_divider,
+			right = wezterm.nerdfonts.pl_right_hard_divider,
+		},
+	},
+	sections = {
+		tabline_a = { "mode" },
+		tabline_b = { "workspace" },
+		tabline_c = { " " },
+		tab_active = {
+			"index",
+			{ "parent", padding = 0 },
+			"/",
+			{ "cwd", padding = { left = 0, right = 1 } },
+			{ "zoomed", padding = 0 },
+		},
+		tab_inactive = { "index", { "process", padding = { left = 0, right = 1 } } },
+		tabline_x = { { "datetime", style = "%Y/%m/%d %H:%M:%S" } },
+		tabline_y = {
+			sys.cpu.utilization.widget().get_text,
+			sys.ram.utilization.widget().get_text,
+			"ram",
+			sys.network.download.widget().get_text,
+			sys.network.upload.widget().get_text,
+		},
+		tabline_z = { "domain" },
+	},
+	extensions = {},
 })
 
 config.mouse_bindings = {

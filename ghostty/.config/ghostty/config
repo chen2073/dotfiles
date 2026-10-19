@@ -17,20 +17,11 @@ keybind = ctrl+h=goto_split:left
 keybind = ctrl+j=goto_split:bottom
 keybind = ctrl+k=goto_split:top
 keybind = ctrl+l=goto_split:right
-keybind = super+h=new_split:left
-keybind = super+j=new_split:down
-keybind = super+k=new_split:up
-keybind = super+l=new_split:right
+keybind = super+shift+'=new_split:down
+keybind = super+shift+5=new_split:right
+keybind = cmd+shift+c=new_split:right
+keybind = chain=text:claude\r
 keybind = super+r=reload_config
-keybind = super+1=goto_tab:1
-keybind = super+2=goto_tab:2
-keybind = super+3=goto_tab:3
-keybind = super+4=goto_tab:4
-keybind = super+5=goto_tab:5
-keybind = super+6=goto_tab:6
-keybind = super+7=goto_tab:7
-keybind = super+8=goto_tab:8
-keybind = super+9=goto_tab:9
 
 keybind = global:cmd+q=toggle_quick_terminal
 quick-terminal-position = top
