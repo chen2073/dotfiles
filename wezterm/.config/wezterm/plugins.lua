@@ -10,6 +10,9 @@ local M = {}
 local bar_bg = { Background = { Color = gb.bg0 } }
 local bar_gap = { Text = "  " }
 
+-- thin divider between the system widgets; components already pad themselves by 1 on each side
+local widget_sep = { Text = "│" }
+
 -- tabline function components must return a plain string, so prefix the widget text ourselves
 -- instead of using get_formatted (which returns colored format items)
 local function with_icon(widget, icon)
@@ -108,12 +111,14 @@ function M.apply_to_config(config)
 			tabline_x = { { "datetime", style = "%Y/%m/%d %H:%M:%S" }, { Text = " " } },
 			tabline_y = {
 				with_icon(sys.cpu.utilization.widget(), wezterm.nerdfonts.md_cpu_64_bit),
+				widget_sep,
 				with_icon(sys.ram.utilization.widget(), wezterm.nerdfonts.md_memory),
-				"ram",
+				widget_sep,
 				with_icon(sys.network.download.widget(), wezterm.nerdfonts.md_arrow_down),
+				widget_sep,
 				with_icon(sys.network.upload.widget(), wezterm.nerdfonts.md_arrow_up),
 			},
-			tabline_z = { { "domain", padding = 2 }, bar_bg, bar_gap },
+			tabline_z = { { "domain", padding = 2, }, bar_bg, bar_gap },
 		},
 		extensions = {},
 	})

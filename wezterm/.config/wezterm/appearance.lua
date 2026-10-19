@@ -13,6 +13,7 @@ M.palette = {
 	fg4 = "#a89984",
 	yellow = "#fabd2f",
 	aqua = "#8ec07c",
+	red = "#fb4934",
 }
 
 function M.apply_to_config(config)
@@ -40,6 +41,32 @@ function M.apply_to_config(config)
 	config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 	config.colors = config.colors or {}
 	config.colors.tab_bar = { background = M.palette.bg0 }
+
+	-- the retro tab bar has no padding option; a top window border in the bar color sits above it
+	-- and acts as a top margin
+	config.window_frame = {
+		border_top_height = "0.4cell",
+		border_top_color = M.palette.bg0,
+	}
+
+	-- the retro tab bar draws integrated buttons as plain text (" . ", " - ", " X ") by default;
+	-- use matching codicon glyphs instead, with a red hover on close like native Windows
+	local function button(icon, fg, bg)
+		return wezterm.format({
+			{ Background = { Color = bg } },
+			{ Foreground = { Color = fg } },
+			{ Text = "  " .. icon .. "  " },
+		})
+	end
+	local p = M.palette
+	config.tab_bar_style = {
+		window_hide = button(wezterm.nerdfonts.cod_chrome_minimize, p.fg4, p.bg0),
+		window_hide_hover = button(wezterm.nerdfonts.cod_chrome_minimize, p.fg, p.bg1),
+		window_maximize = button(wezterm.nerdfonts.cod_chrome_maximize, p.fg4, p.bg0),
+		window_maximize_hover = button(wezterm.nerdfonts.cod_chrome_maximize, p.fg, p.bg1),
+		window_close = button(wezterm.nerdfonts.cod_chrome_close, p.fg4, p.bg0),
+		window_close_hover = button(wezterm.nerdfonts.cod_chrome_close, p.fg, p.red),
+	}
 end
 
 return M
