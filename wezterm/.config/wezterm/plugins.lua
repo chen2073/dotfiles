@@ -10,6 +10,14 @@ local M = {}
 local bar_bg = { Background = { Color = gb.bg0 } }
 local bar_gap = { Text = "  " }
 
+-- tabline function components must return a plain string, so prefix the widget text ourselves
+-- instead of using get_formatted (which returns colored format items)
+local function with_icon(widget, icon)
+	return function()
+		return icon .. " " .. widget.get_text()
+	end
+end
+
 -- smart-splits appends to config.keys, so apply this after keymaps
 function M.apply_to_config(config)
 	smart_splits.apply_to_config(config, {
@@ -102,11 +110,11 @@ function M.apply_to_config(config)
 			tab_inactive = { "index", { "process", padding = { left = 0, right = 1 } } },
 			tabline_x = { { "datetime", style = "%Y/%m/%d %H:%M:%S" }, { Text = " " } },
 			tabline_y = {
-				sys.cpu.utilization.widget().get_text,
-				sys.ram.utilization.widget().get_text,
+				with_icon(sys.cpu.utilization.widget(), wezterm.nerdfonts.md_cpu_64_bit),
+				with_icon(sys.ram.utilization.widget(), wezterm.nerdfonts.md_memory),
 				"ram",
-				sys.network.download.widget().get_text,
-				sys.network.upload.widget().get_text,
+				with_icon(sys.network.download.widget(), wezterm.nerdfonts.md_arrow_down),
+				with_icon(sys.network.upload.widget(), wezterm.nerdfonts.md_arrow_up),
 			},
 			tabline_z = { { "domain", padding = 2 }, bar_bg, bar_gap },
 		},
