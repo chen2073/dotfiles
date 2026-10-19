@@ -108,8 +108,8 @@ function M.apply_to_config(config)
 				{ "process", padding = { left = 0, right = 1 } },
 			},
 			tab_inactive = { "index", { "process", padding = { left = 0, right = 1 } } },
-			tabline_x = { { "datetime", style = "%Y/%m/%d %H:%M:%S" }, { Text = " " } },
-			tabline_y = {
+			tabline_x = {
+				{ "datetime", style = "%Y/%m/%d %H:%M:%S" },
 				with_icon(sys.cpu.utilization.widget(), wezterm.nerdfonts.md_cpu_64_bit),
 				widget_sep,
 				with_icon(sys.ram.utilization.widget(), wezterm.nerdfonts.md_memory),
@@ -119,7 +119,9 @@ function M.apply_to_config(config)
 				with_icon(sys.network.upload.widget(), wezterm.nerdfonts.md_arrow_up),
 				{ Text = " " },
 			},
-			tabline_z = { { "domain", padding = { left = 1, right = 1 } }, bar_bg, bar_gap },
+			tabline_y = {},
+			tabline_z = { --[[ { "domain", padding = { left = 1, right = 1 } }, bar_bg, bar_gap ]]
+			},
 		},
 		extensions = {},
 	})
