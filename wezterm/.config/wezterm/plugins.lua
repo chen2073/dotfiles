@@ -97,15 +97,12 @@ function M.apply_to_config(config)
 		sections = {
 			-- raw format tables pass straight through, so these give an outer margin in the bar color;
 			-- "ResetAttributes" restores the section colors afterwards
-			tabline_a = { bar_bg, bar_gap, "ResetAttributes", { "mode", padding = 2 } },
+			tabline_a = { bar_bg, bar_gap, "ResetAttributes", { "mode" } },
 			tabline_b = { "workspace" },
 			tabline_c = { "  " },
 			tab_active = {
 				"index",
-				{ "parent", padding = 0 },
-				"/",
-				{ "cwd", padding = { left = 0, right = 1 } },
-				{ "zoomed", padding = 0 },
+				{ "process", padding = { left = 0, right = 1 } },
 			},
 			tab_inactive = { "index", { "process", padding = { left = 0, right = 1 } } },
 			tabline_x = { { "datetime", style = "%Y/%m/%d %H:%M:%S" }, { Text = " " } },
