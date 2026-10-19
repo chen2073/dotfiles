@@ -8,7 +8,7 @@ local M = {}
 
 -- spacer drawn in the bar color, used as outer margin at both ends of the tab bar
 local bar_bg = { Background = { Color = gb.bg0 } }
-local bar_gap = { Text = "  " }
+local bar_gap = { Text = " " }
 
 -- thin divider between the system widgets; components already pad themselves by 1 on each side
 local widget_sep = { Text = "│" }
@@ -117,8 +117,9 @@ function M.apply_to_config(config)
 				with_icon(sys.network.download.widget(), wezterm.nerdfonts.md_arrow_down),
 				widget_sep,
 				with_icon(sys.network.upload.widget(), wezterm.nerdfonts.md_arrow_up),
+				{ Text = " " },
 			},
-			tabline_z = { { "domain", padding = 2, }, bar_bg, bar_gap },
+			tabline_z = { { "domain", padding = { left = 1, right = 1 } }, bar_bg, bar_gap },
 		},
 		extensions = {},
 	})

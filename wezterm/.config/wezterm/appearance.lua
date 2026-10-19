@@ -55,7 +55,7 @@ function M.apply_to_config(config)
 		return wezterm.format({
 			{ Background = { Color = bg } },
 			{ Foreground = { Color = fg } },
-			{ Text = "  " .. icon .. "  " },
+			{ Text = " " .. icon .. " " },
 		})
 	end
 	local p = M.palette
