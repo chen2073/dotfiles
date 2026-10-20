@@ -55,6 +55,7 @@ function M.apply_to_config(config)
 		log_level = "info", -- 'error' | 'warn' | 'info'
 	})
 
+	config.tab_max_width = 50
 	tabline.setup({
 		options = {
 			icons_enabled = true,

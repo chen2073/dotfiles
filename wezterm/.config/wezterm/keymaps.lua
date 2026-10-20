@@ -23,12 +23,12 @@ function M.apply_to_config(config)
 		},
 		{
 			key = "c",
-			mods = "CTRL",
+			mods = "CTRL|SHIFT",
 			action = wezterm.action.CopyTo("Clipboard"),
 		},
 		{
 			key = "v",
-			mods = "CTRL",
+			mods = "CTRL|SHIFT",
 			action = wezterm.action.PasteFrom("Clipboard"),
 		},
 		{
