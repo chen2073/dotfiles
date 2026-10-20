@@ -13,6 +13,7 @@ local claude_code = wezterm.action_callback(function(window, pane)
 end)
 
 function M.apply_to_config(config)
+	config.disable_default_key_bindings = true
 	config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 
 	config.keys = {
@@ -20,6 +21,11 @@ function M.apply_to_config(config)
 			key = "s",
 			mods = "CTRL|SHIFT",
 			action = wezterm.action.Search("CurrentSelectionOrEmptyString"),
+		},
+		{
+			key = "c",
+			mods = "CTRL",
+			action = wezterm.action.CopyTo("Clipboard"),
 		},
 		{
 			key = "v",
@@ -67,6 +73,26 @@ function M.apply_to_config(config)
 				pane:split({ direction = "Bottom" })
 				right:split({ direction = "Bottom" })
 			end),
+		},
+		{
+			key = "P",
+			mods = "CTRL",
+			action = wezterm.action.ActivateCommandPalette,
+		},
+		{
+			key = "=",
+			mods = "CTRL",
+			action = wezterm.action.IncreaseFontSize,
+		},
+		{
+			key = "-",
+			mods = "CTRL",
+			action = wezterm.action.DecreaseFontSize,
+		},
+		{
+			key = "F",
+			mods = "CTRL",
+			action = wezterm.action.Search({ CaseSensitiveString = "" }),
 		},
 	}
 
